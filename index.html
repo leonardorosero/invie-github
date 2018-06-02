@@ -1,39 +1,59 @@
-<html>
-<head>
-<title>Invie</title>
-<style media="screen">
-  body{
-    margin: 0;
-<<<<<<< HEAD
-    border: 10px solid red;
-}
+<?php 
+   require "Controlador/Controlador.php";
+   $controlador=new Controlador();
 
-  }
-  img{
-    max-width: 100%;
-    vertical-align: top;
-    /*display: none;*/
-  }
-  img#responsive{
-    display: none;
-  }
-  @media screen and (max-width: 768px){
-    img#responsive{
-      display: block;
-    }
+   if (isset($_SESSION['usuario'])) {
+   	if (isset($_GET['accion'])) {
+   		switch ($_GET['accion']) {
+   			case '':
+   				
+   			break;
+   			
+   	  }
+   	}else{
+   		if ($_SESSION['ROL']==3) {
+				$controlador->abrir_pagina("Vista/html/inicio.php");
+				die();
+			}elseif ($_SESSION['ROL']==2 || $_SESSION['ROL']==1) {
+				$controlador->abrir_pagina("Vista/html/panel.php");
+				die();
+	     }
+   	}
+   }else{
+   	  if (isset($_GET['accion'])) {
+   	  	switch ($_GET['accion']) {
+   	  		case 'Jeans':
+   	  			$controlador->abrir_pagina("Vista/html/Jeans.php");
+   	  			break;
+   	  		case 'Leggins':
+   	  			$controlador->abrir_pagina("Vista/html/Leggins.php");
+   	  			break;
+   	  		case 'Shorts':
+   	  			$controlador->abrir_pagina("Vista/html/Shorts.php");
+   	  			break;	
+   	  		case 'Blusas':
+   	  			$controlador->abrir_pagina("Vista/html/BlusasOcasion.php");
+   	  			break;
+   	  		case 'Vestidos':
+   	  			$controlador->abrir_pagina("Vista/html/Vestidos.php");
+   	  			break;
+   	  		case 'Overoles':
+   	  			$controlador->abrir_pagina("Vista/html/Overoles.php");
+   	  			break;
+   	  		case 'RopaInterior':
+   	  			$controlador->abrir_pagina("Vista/html/RopaInterior.php");
+   	  					break;	
+   	  		case 'login':
+			    $controlador->login($_POST['usuario'],$_POST['password'],$_POST['url']);
+			break;				
+   	  	}
+   	  }else{
+   	  	$controlador->abrir_pagina("Vista/html/inicio.php");
+   	  	die();
+   	  }
+   }
 
-  }
-</style>
-</head>
-<body>
-<<<<<<< HEAD
-  <img src="invie-responsive.jpg" width="800" alt="" id="responsive">
-  <img src="imagen2.jpg" alt="">
-  <img src="footer.jpg" alt="">
-=======
-<img src="nueva-version.jpg" width="100%" alt="">
+   
 
->>>>>>> nueva-imagen
-
-</body>
-</html>
+ 
+?>
